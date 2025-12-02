@@ -7,9 +7,9 @@ from datetime import datetime
 # ================= 配置区域 =================
 WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK")
 SYMBOL = "BTC-USD" 
-# 定义什么是“大户”？这里设定为单笔成交大于 15,000 美元
-# Coinbase 散户多，1.5万刀一笔已经算是有力度的资金了
-WHALE_THRESHOLD_USD = 200000 
+# 定义什么是“大户”？这里设定为单笔成交大于 20,000 美元
+# Coinbase 散户多，2万刀一笔已经算是有力度的资金了
+WHALE_THRESHOLD_USD = 20000
 
 def get_recent_trades():
     """
