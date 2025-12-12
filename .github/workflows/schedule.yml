@@ -1,10 +1,11 @@
-name: Coinbase Whale Monitor
+name: Daily Coinbase Whale Check
 
 on:
   schedule:
-    # 每 5 分钟运行一次
-    - cron: '*/5 * * * *'
-  # 允许手动点击按钮测试
+    # 每天 UTC 12:00 (北京时间 20:00) 运行一次
+    # 分 时 日 月 星期
+    - cron: '0 12 * * *'
+  # 依然保留手动点击运行的功能
   workflow_dispatch:
 
 jobs:
@@ -20,13 +21,11 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        # 这里直接安装 requests 和 pandas，防止你忘记上传 requirements.txt
         run: |
-          pip install requests pandas
+          pip install -r requirements.txt
 
       - name: Run Monitor Script
         env:
-          # 只需要这一个密钥
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           python main.py
